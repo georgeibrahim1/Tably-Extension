@@ -8,21 +8,76 @@
 </head>
 <body>
   <div class="popup-container">
-    <div class="logo">
-      <img src="../../public/tably.png" alt="Tably Logo" class="logo-img">
+    <div class="header-section">
+      <div class="logo">
+        <img src="../../public/tably.png" alt="Tably Logo" class="logo-img">
+      </div>
+      <div class="header-content">
+        <h1 class="title">Tably Extension</h1>
+        <p class="description">Simulate Alt+Tab behaviour for your chrome tabs</p>
+      </div>
     </div>
-    <h1 class="title">Tably Extension</h1>
-    <p class="description">Simulate Alt+Tab behaviour for your chrome tabs</p>
-    <hr/>
-    <div class="note">
-      <h3>Note</h3>
-      <p>This extension may not work on certain sites like <strong>chrome://</strong> pages or the Chrome Web Store due to Chrome's security restrictions.</p>
+
+    <div class="divider"></div>
+
+    <div class="note-section">
+      <div class="section-header">
+        <div class="section-icon">⚠️</div>
+        <h3 class="section-title">Note</h3>
+      </div>
+      <p class="note-text">This extension may not work on certain sites like <strong>chrome://</strong> pages or the Chrome Web Store due to Chrome's security restrictions.</p>
     </div>
-    <hr/>
-    <div class="links">
-      <h3>Developer</h3>
-      <a href="https://github.com/georgeibrahim1" target="_blank">GitHub</a>
-      <a href="https://www.linkedin.com/in/georgeibrahim1/" target="_blank">LinkedIn</a>
+
+    <div class="divider"></div>
+
+    <div class="settings-section">
+      <div class="section-header">
+        <div class="section-icon">⚙️</div>
+        <h3 class="section-title">Settings</h3>
+      </div>
+
+      <div class="toggle-container">
+        <div class="toggle-item">
+          <div class="toggle-info">
+            <span class="toggle-label">Show preview</span>
+            <span class="toggle-description">Show a preview of the tab when navigating</span>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="showPreview" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="toggle-item">
+          <div class="toggle-info">
+            <span class="toggle-label">All windows</span>
+            <span class="toggle-description">Show tabs from all windows instead of current window only</span>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="allWindows">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="links-section">
+      <div class="section-header">
+        <div class="section-icon">👨‍💻</div>
+        <h3 class="section-title">Developer</h3>
+      </div>
+      <div class="links-container">
+        <a href="https://github.com/georgeibrahim1" target="_blank" class="link-button github">
+          <span class="link-icon">🔗</span>
+          <span class="link-text">GitHub</span>
+        </a>
+        <a href="https://www.linkedin.com/in/georgeibrahim1/" target="_blank" class="link-button linkedin">
+          <span class="link-icon">💼</span>
+          <span class="link-text">LinkedIn</span>
+        </a>
+      </div>
     </div>
   </div>
 
