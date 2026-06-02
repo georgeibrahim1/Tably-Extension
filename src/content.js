@@ -8,6 +8,18 @@
 
   // General Functions
 
+  function updateOverlayPositions() {
+    const vv = window.visualViewport;
+    
+    overlay.style.left = vv.offsetLeft + "px";
+    overlay.style.top = vv.offsetTop + "px";
+    overlay.style.width = vv.width * vv.scale + "px";
+    overlay.style.height = vv.height * vv.scale + "px";
+    overlay.style.transform = `scale(${1 / vv.scale})`;
+    overlay.style.transformOrigin = "top left";
+
+  }
+
   const getTabs = () => {
     return new Promise((resolve) => {
       chrome.runtime.sendMessage({action: "getTabs"}, (res) => {
@@ -56,6 +68,8 @@
     document.removeEventListener('keydown', handleMove,true);
     document.removeEventListener('keyup', handleKeyUp);
     chrome.runtime.onMessage.removeListener(handleMessage);
+    window.visualViewport.removeEventListener("resize", updateOverlayPositions);
+    window.visualViewport.removeEventListener("scroll", updateOverlayPositions);
 
     if (overlay && overlay.parentNode) {
       overlay.style.opacity = "0";
@@ -119,12 +133,12 @@
   box.appendChild(ring);
   
   // Making a SubHost inside a host (the current working tab)
-  // it's isolated using Shadow Dom, which forces a dom subtree to not inherit the main host styles (in this case, I need to prevent the zoom level of main host page)
+  // it's isolated using Shadow Dom, which forces a dom subtree to not inherit the main host styles
   const subHost = document.createElement('div');
   subHost.style.cssText = "all: initial; position: fixed; top: 0; left: 0; width: 0; height: 0; z-index: 999999;";
   const shadow = subHost.attachShadow({ mode: "closed" });
   document.body.prepend(subHost);
-  overlay.style.zoom = "1";
+  updateOverlayPositions();
   shadow.appendChild(overlay);
   
   // script
@@ -215,7 +229,8 @@
     document.addEventListener('keyup', handleKeyUp);
     overlay.addEventListener('click', handleClickOut,true);
     window.addEventListener('blur',handleClean);
-    
+    window.visualViewport.addEventListener("resize", updateOverlayPositions);
+    window.visualViewport.addEventListener("scroll", updateOverlayPositions);
   });
 
 
