@@ -70,7 +70,7 @@
 
   
   // styling
-  // TODO: isolate the shit from the host page 
+
   const overlay = document.createElement("div");
   overlay.style.position = "fixed";
   overlay.style.top = "0";
@@ -118,7 +118,14 @@
   box.style.position = "relative"; 
   box.appendChild(ring);
   
-  document.body.prepend(overlay);
+  // Making a SubHost inside a host (the current working tab)
+  // it's isolated using Shadow Dom, which forces a dom subtree to not inherit the main host styles (in this case, I need to prevent the zoom level of main host page)
+  const subHost = document.createElement('div');
+  subHost.style.cssText = "all: initial; position: fixed; top: 0; left: 0; width: 0; height: 0; z-index: 999999;";
+  const shadow = subHost.attachShadow({ mode: "closed" });
+  document.body.prepend(subHost);
+  overlay.style.zoom = "1";
+  shadow.appendChild(overlay);
   
   // script
   getTabs().then(tabs => {
