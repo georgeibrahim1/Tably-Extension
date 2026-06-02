@@ -7,7 +7,7 @@
   let lastIndex = -1;
 
   // General Functions
-
+  // TODO: do the same update function while zooming out using CTRL+-
   function updateOverlayPositions() {
     const vv = window.visualViewport;
     
@@ -17,7 +17,6 @@
     overlay.style.height = vv.height * vv.scale + "px";
     overlay.style.transform = `scale(${1 / vv.scale})`;
     overlay.style.transformOrigin = "top left";
-
   }
 
   const getTabs = () => {
